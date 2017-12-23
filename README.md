@@ -10,12 +10,13 @@ and begin overwriting files creating a ring buffer.
 
 ## Installation
 
-Copy the `packet-capture@.service` file to `/etc/systemd/system`. A packet
-capture can then be started on a specific interface by running `systemctl start
+Copy the `packet-capture@.service` file to `/etc/systemd/system` and reload
+systemd by running `systemctl daemon-reload`. A packet capture can then be
+started on a specific interface by running `systemctl start
 packet-capture@<interface>`. The pcap files will begin to be written to
 `/var/tmp` in the format `pcap-<interface>-<file number>`. These will always
 start at file number 0 so restarting this will immediately begin by overwriting
-the first file. Systemd can also start this at boot time by running `systemctl 
+the first file. Systemd can also start this at boot time by running `systemctl
 enable packet-capture@<interface>`.
 
 ## Configuration
