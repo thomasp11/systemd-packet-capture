@@ -1,0 +1,21 @@
+[Unit]
+Description=Packet capture ring buffer
+Documentation=https://github.com/thomasp11/systemd-packet-capture
+After=network.target
+
+[Service]
+Type=simple
+
+# Max file size
+Environment="FILESIZE=25"
+# Max number of files
+Environment="FILELIMIT=10"
+# BPF filter
+Environment="FILTER="
+# Additional arguments to tcpdump
+Environment="ADDITIONAL_ARGS="
+
+ExecStart=/usr/sbin/tcpdump -i %i -w /var/tmp/pcap-%i- -W ${FILESIZE} -C ${FILELIMIT} -K -n ${ADDITIONAL_ARGS} ${FILTER}
+
+[Install]
+WantedBy=multi-user.target
