@@ -15,7 +15,7 @@ Environment="FILTER="
 # Additional arguments to tcpdump
 Environment="ADDITIONAL_ARGS="
 
-ExecStart=/usr/sbin/tcpdump -i %i -w /var/tmp/pcap-%i- -W ${FILESIZE} -C ${FILELIMIT} -K -n ${ADDITIONAL_ARGS} ${FILTER}
+ExecStart=/usr/sbin/tcpdump -i %i -w /var/tmp/pcap-%i- -C ${FILESIZE} -W ${FILELIMIT} -K -n ${ADDITIONAL_ARGS} ${FILTER}
 
 [Install]
 WantedBy=multi-user.target
