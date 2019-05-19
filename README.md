@@ -56,6 +56,16 @@ and an API token to upload captures to either a
 [CS Personal](https://cloudshark.io/products/personal/) account or a private 
 [CS Enterprise](https://cloudshark.io/products/enterprise/) instance.
 
+To enable this script add it using the `ADDITIONAL_ARGS` after copying the
+service file to `/etc/systemd/system`:
+
+```
+Environment="ADDITIONAL_ARGS=-z/usr/local/bin/cloudshark_ring_upload.sh"
+```
+
+Then copy `cloudshark.conf` to `/etc` and configure the URL and API Token. This
+token will need permission to upload, search and delete.
+
 ## SELinux
 
 Trying to use a postrotate-command caused all sorts of issues with SELinux. In
