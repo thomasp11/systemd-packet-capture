@@ -45,3 +45,18 @@ argument is the `-z postrotate-command`. This can be used to run
 `postrotate-command file` when tcpdump begins saving to a new pcap file. This
 could be used to perform post-processing on the capture such as running it
 through [Suricata](https://suricata-ids.org/) or uploading the capture.
+
+## CloudShark Ring Upload
+
+One example script that can be used with the postrotate command is
+[cloudshark_ring_upload.sh](/cloudshark_ring_upload.sh). This can be copied to
+`/usr/local/bin` and reads a [config file](/cloudshark.conf) located at
+`/etc/cloudshark` for the URL of a [CloudShark](https://cloudshark.io/) instance
+and an API token to upload captures to either a
+[CS Personal](https://cloudshark.io/products/personal/) account or a private 
+[CS Enterprise](https://cloudshark.io/products/enterprise/) instance.
+
+## SELinux
+
+Trying to use a postrotate-command caused all sorts of issues with SELinux. In
+the [selinux](/selinux) has a policy module that seemed to work on CentOS 7.

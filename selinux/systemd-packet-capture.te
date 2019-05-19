@@ -1,0 +1,19 @@
+
+module systemd-packet-capture 1.0;
+
+require {
+	type shell_exec_t;
+	type bin_t;
+	type netutils_t;
+	class process setsched;
+	class file { execute execute_no_trans };
+}
+
+#============= netutils_t ==============
+
+#!!!! WARNING: 'bin_t' is a base type.
+allow netutils_t bin_t:file { execute execute_no_trans };
+allow netutils_t self:process setsched;
+
+#!!!! WARNING: 'shell_exec_t' is a base type.
+allow netutils_t shell_exec_t:file execute;
