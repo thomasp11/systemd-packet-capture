@@ -16,8 +16,10 @@ Environment="FILTER="
 Environment="ADDITIONAL_ARGS="
 # Filename
 Environment="FILENAME=pcap"
+# Capture directory
+Environment="CAPTURE_DIR=/var/tmp"
 
-ExecStart=/usr/sbin/tcpdump -i %i -w /var/tmp/${FILENAME}-%i- -C ${FILESIZE} -W ${FILELIMIT} -K -n ${ADDITIONAL_ARGS} ${FILTER}
+ExecStart=/usr/sbin/tcpdump -i %i -w ${CAPTURE_DIR}/${FILENAME}-%i- -C ${FILESIZE} -W ${FILELIMIT} -K -n ${ADDITIONAL_ARGS} ${FILTER}
 
 [Install]
 WantedBy=multi-user.target

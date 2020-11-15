@@ -10,7 +10,7 @@ and begin overwriting files creating a ring buffer.
 
 ## Installation
 
-Copy the `packet-capture@.service` file to `/etc/systemd/system` and reload
+Copy the `packet-capture@.service` file to `/usr/lib/systemd/system/` and reload
 systemd by running `systemctl daemon-reload`. A packet capture can then be
 started on a specific interface by running `systemctl start
 packet-capture@<interface>`. The pcap files will begin to be written to
@@ -51,13 +51,13 @@ through [Suricata](https://suricata-ids.org/) or uploading the capture.
 One example script that can be used with the postrotate command is
 [cloudshark_ring_upload.sh](/cloudshark_ring_upload.sh). This can be copied to
 `/usr/local/bin` and reads a [config file](/cloudshark.conf) located at
-`/etc/cloudshark` for the URL of a [CloudShark](https://cloudshark.io/) instance
+`/etc/cloudshark.conf` for the URL of a [CloudShark](https://cloudshark.io/) instance
 and an API token to upload captures to either a
 [CS Personal](https://cloudshark.io/products/personal/) account or a private 
 [CS Enterprise](https://cloudshark.io/products/enterprise/) instance.
 
 To enable this script add it using the `ADDITIONAL_ARGS` after copying the
-service file to `/etc/systemd/system`:
+service file to `/usr/lib/systemd/system/`:
 
 ```
 Environment="ADDITIONAL_ARGS=-z/usr/local/bin/cloudshark_ring_upload.sh"
